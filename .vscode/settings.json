@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "venv_rent/bin/python",
+    "cornflakes.linter.executablePath": "venv_rent/bin/flake8"
+}
