@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import Aptos
 
-# Register your models here.
+
+@admin.register(Aptos)
+class AptosAdmin(admin.ModelAdmin):
+    list_display = (
+        'address',
+        'score_address',
+    )
