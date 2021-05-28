@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-j54zkp3zx%i6le@p!j!%4*ea*g3h-c#b^g&)4&x==tjf_cvs83
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["aptosrent.ngrok.io", "127.0.0.1"]
 
 
 # Application definition
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'aptos_rent.apps.AptosRentConfig'
+    'aptos_rent.apps.AptosRentConfig',
+    'djmoney'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'aptos_rent.sqlite3',
     }
 }
 

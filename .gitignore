@@ -92,6 +92,7 @@ pytestdebug.log
 *.log
 local_settings.py
 db.sqlite3
+aptos_rent.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
