@@ -19,3 +19,9 @@ SCORE_SIZE = [
     (70, 'Mediana'),
     (100, 'Grande'),
 ]
+
+STATUS_MANAGE = [
+    ('Not started', 'Not started'),
+    ('In progress', 'In progress'),
+    ('Finished', 'Finished'),
+]
