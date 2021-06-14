@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from .models import Aptos
 from .models import Manage
 
@@ -39,6 +40,7 @@ class ManageAdmin(admin.ModelAdmin):
     list_display = [
         'updated_at',
         'manage_apto',
+        'link',
         'status',
         'description',
     ]
@@ -55,3 +57,9 @@ class ManageAdmin(admin.ModelAdmin):
         'status',
         'description',
     ]
+
+    def link(self, obj):
+        return format_html(
+            "<a href='/admin/aptos_rent/aptos/{id}/change/'>{id}</a>",
+            id=obj.manage_apto.id
+        )
