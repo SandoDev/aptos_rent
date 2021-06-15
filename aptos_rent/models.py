@@ -9,6 +9,9 @@ class Aptos(models.Model):
     created_at = models.DateTimeField(
         auto_now_add=True
     )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
     address = models.CharField(max_length=200)
     score_address = models.PositiveSmallIntegerField(
         choices=constants.SCORE_ADDRESS
@@ -32,6 +35,11 @@ class Aptos(models.Model):
         max_digits=8,
         default_currency="COP"
     )
+    status = models.CharField(
+        max_length=11,
+        choices=constants.STATUS_MANAGE,
+        default='Not started'
+    )
     observations = models.TextField(null=True, blank=True)
     final_score = models.FloatField(null=True, blank=True)
 
@@ -39,25 +47,3 @@ class Aptos(models.Model):
         return str(self.id) + ' - ' + \
             self.created_at.__format__('%Y-%m-%d %H:%M') + ' - ' + \
             self.address
-
-
-class Manage(models.Model):
-    updated_at = models.DateTimeField(
-        auto_now=True,
-    )
-    manage_apto = models.OneToOneField(
-        Aptos,
-        on_delete=models.CASCADE,
-        primary_key=True
-    )
-    status = models.CharField(
-        max_length=11,
-        choices=constants.STATUS_MANAGE,
-        default='Not started'
-    )
-    description = models.TextField(null=True, blank=True)
-
-
-@receiver(post_save, sender=Aptos)
-def my_handler(sender, instance, **kwargs):
-    Manage.objects.create(manage_apto=instance)

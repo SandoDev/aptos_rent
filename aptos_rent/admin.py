@@ -1,9 +1,5 @@
 from django.contrib import admin
-from django.utils.html import format_html
 from .models import Aptos
-from .models import Manage
-
-# admin.site.register(Aptos)
 
 
 @admin.register(Aptos)
@@ -22,9 +18,11 @@ class AptosAdmin(admin.ModelAdmin):
     ]
     readonly_fields = [
         'created_at',
+        'updated_at',
     ]
     ordering = ['-created_at']
     list_filter = [
+        'status',
         'score_address',
         'flat',
         'bedrooms',
@@ -33,33 +31,3 @@ class AptosAdmin(admin.ModelAdmin):
         'score_backyard',
     ]
     search_fields = ['address', 'price']
-
-
-@admin.register(Manage)
-class ManageAdmin(admin.ModelAdmin):
-    list_display = [
-        'updated_at',
-        'manage_apto',
-        'link',
-        'status',
-        'description',
-    ]
-    readonly_fields = [
-        'updated_at',
-    ]
-    ordering = ['-updated_at']
-    list_filter = [
-        'status',
-    ]
-    search_fields = [
-        'manage_apto__address',
-        'manage_apto__price',
-        'status',
-        'description',
-    ]
-
-    def link(self, obj):
-        return format_html(
-            "<a href='/admin/aptos_rent/aptos/{id}/change/'>{id}</a>",
-            id=obj.manage_apto.id
-        )
